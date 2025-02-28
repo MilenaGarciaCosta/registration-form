@@ -1,6 +1,7 @@
 const Foto =()=>{
     return(
         <>
+        <h1>Ebaaaa foto</h1>
         </>
     )
 }

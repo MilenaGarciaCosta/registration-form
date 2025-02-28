@@ -55,6 +55,10 @@
     height: 20px;
 }
 
+.mensagem-erro {
+    color: red;
+}
+
 /* Botão avançar*/
 .btn-avancar {
     background-color: #ffffff00;
@@ -67,6 +71,7 @@
     transition: all 0.6s ease;
     font-weight: 600;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .btn-avancar:hover {
