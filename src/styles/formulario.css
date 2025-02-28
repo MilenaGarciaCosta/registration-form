@@ -1,3 +1,95 @@
 @import url('main.css');
 @import "tailwindcss";
 
+/* Inputs */
+.formulario_cadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario_campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo_etiqueta {
+    margin: 10px 0;
+    font-weight: 500;
+    color: var(--darkest-blue);
+}
+
+.campo_escrita {
+    height: 40px;
+    border-radius: 1000px;
+    width: 30vw;
+    outline: #2397c9a6 1.5px solid;
+    padding: 0 20px;
+    color: var(--darkest-blue);
+}
+
+.campo_escrita--menor {
+    width: 15vw;
+}
+
+.campo_escrita:focus {
+    outline: var(--darkest-blue) 2.5px solid;
+}
+
+.formulario_termos {
+    width: 30vw;
+    text-align: justify;
+    font-size: 14px;
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    margin: 25px 0;
+}
+
+.termos_texto{
+    width: 25vw;
+}
+
+.termos_input{
+    width: 20px;
+    height: 20px;
+}
+
+/* Botão avançar*/
+.btn-avancar {
+    background-color: #ffffff00;
+    color: var(--darkest-blue);
+    width: 8.5em;
+    height: 2.9em;  
+    border: #00000000 0.2em solid;
+    border-radius: 11px;
+    text-align: right;
+    transition: all 0.6s ease;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.btn-avancar:hover {
+    background-color: var(--darkest-blue);
+    color: #f2f2f2;
+}
+
+.btn-avancar svg {
+    width: 1.6em;
+    margin: 0.1em 0.5em 1em;
+    position: absolute;
+    display: flex;
+    transition: all 0.6s ease;
+}
+
+.btn-avancar:hover svg {
+    transform: translateX(5px);
+}
+
+.text {
+    margin: 0 1.5em
+}
+
+.btn-avancar input{
+    cursor: pointer;
+}
