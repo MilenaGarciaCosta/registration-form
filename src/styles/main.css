@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --font-montserrat: "Montserrat", serif;
+}
+
+.btn-entrar {
+    outline: none;
+    box-shadow: inset 2px 2px 5px #29abe2c5, inset -2px -2px 5px #0b5d80e5, 2px 2px 5px #051f2be5, -2px -2px 5px #0b5d80e5;   
+    border-color: #2397c9a6;  
+}
+
+.btn-entrar:hover {
+    box-shadow: inset 2px 2px 5px #2db4eeec, inset -2px -2px 5px #0b5d80e5, 2px 2px 5px #051f2be5, -2px -2px 5px #0b5d80e5;
+}
+
+.btn-entrar:focus {
+    box-shadow: inset 4px 4px 10px #0b5d80e5, inset -4px -4px 10px #2db4eeec;
+}
+
+.main-icon{
+    height: 40px;
+}
+
+#main{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin: 90px 0;
+}

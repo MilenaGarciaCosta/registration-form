@@ -1,0 +1,6 @@
+@import url('main.css');
+@import "tailwindcss";
+
+*{
+    font-family: var(--font-montserrat);
+}
