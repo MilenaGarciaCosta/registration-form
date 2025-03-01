@@ -22,14 +22,14 @@
 .campo_escrita {
     height: 40px;
     border-radius: 1000px;
-    width: 30vw;
+    width: 400px;
     outline: #2397c9a6 1.5px solid;
     padding: 0 20px;
     color: var(--darkest-blue);
 }
 
 .campo_escrita--menor {
-    width: 15vw;
+    width: 200px;
 }
 
 .campo_escrita:focus {
@@ -37,7 +37,6 @@
 }
 
 .formulario_termos {
-    width: 30vw;
     text-align: justify;
     font-size: 14px;
     display: flex;
@@ -47,7 +46,7 @@
 }
 
 .termos_texto{
-    width: 25vw;
+    width: 370px;
 }
 
 .termos_input{
@@ -97,4 +96,23 @@
 
 .btn-avancar input{
     cursor: pointer;
+}
+
+/* Responsividade */
+@media (max-width: 470px) {
+    .campo_escrita {
+        width: 300px;
+    }
+    
+    .campo_escrita--menor {
+        width: 160px;
+    }
+    .termos_input{
+        width: 15px;
+        height: 15px;
+    }
+    .termos_texto{
+        width: 270px;
+        font-size: 12px;
+    }
 }
