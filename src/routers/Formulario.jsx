@@ -1,25 +1,49 @@
 import '../styles/formulario.css'
 import React, { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { validarCPF } from '../scripts/valida-cpf';
+import { useNavigate } from 'react-router-dom';
+import { validarCPF } from '../scripts/valida-cpf.js';
+import { MascaraParaData, validarData } from '../scripts/mascara-datas.js';
 
 const Formulario = () => {
-    const [cpf, setCpf] = useState('');
-    const [valido, setValido] = useState(null);
+    // Refere-se ao valor digitado no campo
+    const [cpf, setCpf] = useState(''); // SetCpf atualiza o valor de cpf
+    // Refere-se ao resultado da validação (true/false/null)
+    const [validoCpf, setValidoCpf] = useState(null);
+    const [dataNascimento, setNascimento] = useState(''); // SetNascimento atualiza o valor de dataNascimento
+    const [validoNascimento, setValidoNascimento] = useState(null);
     const navigate = useNavigate();
 
-    const handleChange = (e) => {
-        setCpf(e.target.value);
+    const handleChangeCPF = (e) => { // 'e' representa o objeto de evento para os event handlers
+        setCpf(e.target.value); // Valor atual do input
+    };
+
+    const handleChangeNascimento = (e) => {
+        const inputValue = e.target.value;
+        const dataComMascara = MascaraParaData(inputValue);
+        setNascimento(dataComMascara);
+        
+        // Só aplica a validação quando a data estiver completa
+        if (dataComMascara.length === 10) {
+            setValidoNascimento(validarData(dataComMascara));
+        } else {
+            setValidoNascimento(null);
+        }
     };
 
     const handleSubmit = (e) => {
+        // Previnindo recarregamento da página
         e.preventDefault();
 
+        // Validações
         const cpfValido = validarCPF(cpf);
-        setValido(cpfValido);
+        const dataValida = validarData(dataNascimento);
+        
+        setValidoCpf(cpfValido);
+        setValidoNascimento(dataValida);
 
-        if (cpfValido) {
-            navigate('/foto')
+        // Se todas as validações estiverem como True, navega-se para a próxima tela de cadastro
+        if (cpfValido && dataValida) {
+            navigate('/foto');
         }
     };
 
@@ -42,16 +66,20 @@ const Formulario = () => {
                     </fieldset>
                     <fieldset className="formulario_campo">
                         <label className="campo_etiqueta" htmlFor="cpf">CPF (apenas números)*</label>
-                        <input name="cpf" id="cpf" className="campo_escrita campo_escrita--menor" value={cpf} onChange={handleChange} required />
-
+                        <input name="cpf" id="cpf" className="campo_escrita campo_escrita--menor" value={cpf} onChange={handleChangeCPF} required />
+                        {validoCpf === false &&
+                            <p className='text-red-600 font-medium pt-2 text-sm'>CPF inválido</p>
+                        }
                     </fieldset>
                     <fieldset className="formulario_campo">
                         <label className="campo_etiqueta" htmlFor="aniversario">Data de nascimento</label>
-                        <input name="aniversario" id="aniversario" className="campo_escrita campo_escrita--menor" required />
-
+                        <input name="aniversario" id="aniversario" className="campo_escrita campo_escrita--menor" maxLength="10" value={dataNascimento} onChange={handleChangeNascimento} required />
+                        {validoNascimento === false &&
+                            <p className='text-red-600 font-medium pt-2 text-sm'>Data inválida</p>
+                        }
                     </fieldset>
                     <fieldset className="formulario_termos">
-                        <input type='checkbox' name="termos" className="termos_input" required />
+                        <input type='checkbox' name="termos" className="termos_input" required /> {/* e.target.checked */}
                         <p className="termos_texto">Li e estou ciente quanto às condições de tratamento dos meus dados conforme
                             descrito na PolíticadePrivacidade do banco.</p>
 
@@ -69,9 +97,6 @@ const Formulario = () => {
                             </div>
                         </div>
                     </button>
-                    {valido === false &&
-                        <p>CPF inválido.</p>
-                    }
                 </div>
             </form>
         </section>
