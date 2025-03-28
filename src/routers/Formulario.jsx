@@ -2,7 +2,7 @@ import '../styles/formulario.css'
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { validarCPF } from '../scripts/valida-cpf.js';
-import { MascaraParaData, validarData } from '../scripts/mascara-datas.js';
+import { MascaraParaData, validarData } from '../scripts/valida-data.js';
 
 const Formulario = () => {
     // Refere-se ao valor digitado no campo
@@ -21,13 +21,6 @@ const Formulario = () => {
         const inputValue = e.target.value;
         const dataComMascara = MascaraParaData(inputValue);
         setNascimento(dataComMascara);
-        
-        // Só aplica a validação quando a data estiver completa
-        if (dataComMascara.length === 10) {
-            setValidoNascimento(validarData(dataComMascara));
-        } else {
-            setValidoNascimento(null);
-        }
     };
 
     const handleSubmit = (e) => {

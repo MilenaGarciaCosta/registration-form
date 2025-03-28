@@ -21,8 +21,15 @@ export function MascaraParaData(data){
 }
 
 export function validarData(data){
-    const dataRegex = /^\d{2}\/\d{2}\/\d{4}$/; // Diferente do \D, o \d corresponde a qualquer caractere que seja um dígito (0-9)
-    return dataRegex.test(data);
-    // const [dd, mm, aaaa] = [..."15031998".match(/(\d{2})?(\d{2})?(\d{4})?/).slice(1)];
+    const [dd, mm, yyyy] = [...data.match(/(\d{2})?(\d{2})?(\d{4})?/).slice(1)];
+    const calc_idade = (2025 - yyyy);
+    if (dd > 31 || mm > 12){
+        //console.log(dd, mm, yyyy)
+        return false;
+    } else{
+        //console.log(dd, mm, yyyy)
+        return true;
+    }
+    // Diferente do \D, o \d corresponde a qualquer caractere que seja um dígito (0-9)
     // O indice 1 no .slice remove o primeiro item do array criado pelo match, que corresponde ao valor inteiro da string
 }
