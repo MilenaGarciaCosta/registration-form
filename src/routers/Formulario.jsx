@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { validarCPF } from '../scripts/valida-cpf.js';
 import { MascaraParaData, validarData } from '../scripts/valida-data.js';
+import { validarEmail } from '../scripts/valida-email.js';
 
 const Formulario = () => {
     // Refere-se ao valor digitado no campo
@@ -11,6 +12,8 @@ const Formulario = () => {
     const [validoCpf, setValidoCpf] = useState(null);
     const [dataNascimento, setNascimento] = useState(''); // SetNascimento atualiza o valor de dataNascimento
     const [validoNascimento, setValidoNascimento] = useState(null);
+    const [email, setEmail] = useState('');
+    const [validoEmail, setValidoEmail] = useState(null);
     const navigate = useNavigate();
 
     const handleChangeCPF = (e) => { // 'e' representa o objeto de evento para os event handlers
@@ -23,6 +26,10 @@ const Formulario = () => {
         setNascimento(dataComMascara);
     };
 
+    const handleChangeEmail = (e) =>{
+        setEmail(e.target.value);
+    }
+
     const handleSubmit = (e) => {
         // Previnindo recarregamento da página
         e.preventDefault();
@@ -30,12 +37,14 @@ const Formulario = () => {
         // Validações
         const cpfValido = validarCPF(cpf);
         const dataValida = validarData(dataNascimento);
+        const emailValido = validarEmail(email);
         
         setValidoCpf(cpfValido);
         setValidoNascimento(dataValida);
+        setValidoEmail(emailValido);
 
         // Se todas as validações estiverem como True, navega-se para a próxima tela de cadastro
-        if (cpfValido && dataValida) {
+        if (cpfValido && dataValida && emailValido) {
             navigate('/foto');
         }
     };
@@ -53,9 +62,11 @@ const Formulario = () => {
                     </fieldset>
 
                     <fieldset className="formulario_campo">
-                        <label className="campo_etiqueta" htmlFor="email">E-mail</label>
-                        <input name="email" id="email" className="campo_escrita" />
-
+                        <label className="campo_etiqueta" htmlFor="email">E-mail*</label>
+                        <input name="email" id="email" className="campo_escrita" value={email} onChange={handleChangeEmail} required/>
+                        {validoEmail === false &&
+                            <p className='text-red-600 font-medium pt-2 text-sm'>E-mail inválido</p>
+                        }
                     </fieldset>
                     <fieldset className="formulario_campo">
                         <label className="campo_etiqueta" htmlFor="cpf">CPF (apenas números)*</label>
@@ -65,7 +76,7 @@ const Formulario = () => {
                         }
                     </fieldset>
                     <fieldset className="formulario_campo">
-                        <label className="campo_etiqueta" htmlFor="aniversario">Data de nascimento</label>
+                        <label className="campo_etiqueta" htmlFor="aniversario">Data de nascimento*</label>
                         <input name="aniversario" id="aniversario" className="campo_escrita campo_escrita--menor" maxLength="10" value={dataNascimento} onChange={handleChangeNascimento} required />
                         {validoNascimento === false &&
                             <p className='text-red-600 font-medium pt-2 text-sm'>Data inválida</p>
