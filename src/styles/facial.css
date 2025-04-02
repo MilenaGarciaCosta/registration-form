@@ -1,0 +1,11 @@
+@import url('main.css');
+@import "tailwindcss";
+
+.icone_facial{
+    height: 30vh;
+    fill: var(--darkest-blue);
+}
+
+.icone_foto_valida{
+    height: 4vh;
+}

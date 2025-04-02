@@ -33,3 +33,7 @@
     color: var(--darkest-blue);
     letter-spacing: 1px;
 }
+
+.page_subtitle{
+    font-size: 15px;
+}
