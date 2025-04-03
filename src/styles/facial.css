@@ -1,11 +1,23 @@
 @import url('main.css');
 @import "tailwindcss";
 
+.formulario-form{
+    display: flex;
+    flex-direction: column;
+    height: 79vh;
+    text-align: center;
+}
+
 .icone_facial{
     height: 30vh;
     fill: var(--darkest-blue);
 }
 
 .icone_foto_valida{
-    height: 4vh;
+    height: 3.5vh;
+}
+
+.formulario_camera{
+    flex-direction: column;
+    align-items: center;
 }
